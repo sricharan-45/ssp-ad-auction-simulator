@@ -22,7 +22,7 @@ class App extends Component {
     };
 
     try {
-      const response = await fetch('http://localhost:3001/ad-request', {
+      const response = await fetch('https://ssp-ad-auction-simulator.onrender.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(requestData),
