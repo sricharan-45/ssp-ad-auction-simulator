@@ -5,6 +5,7 @@ class App extends Component {
     adRequests: [],
     geo: 'US',
     device: 'mobile',
+    customBid: '',
   };
 
   handleChange = (e) => {
@@ -12,13 +13,14 @@ class App extends Component {
   };
 
   handleAdRequest = async () => {
-    const { geo, device } = this.state;
+    const { geo, device, customBid } = this.state;
     const requestData = {
       publisher_id: '123',
       ad_slot_id: 'banner_top',
       geo,
       device,
       time: new Date().toISOString(),
+      custom_bid: parseFloat(customBid) || 0  // Send custom bid
     };
 
     try {
@@ -53,7 +55,7 @@ class App extends Component {
   };
 
   render() {
-    const { geo, device, adRequests } = this.state;
+    const { geo, device, customBid, adRequests } = this.state;
 
     return (
       <div style={{ padding: '20px' }}>
@@ -73,6 +75,9 @@ class App extends Component {
             <option value="desktop">Desktop</option>
             <option value="tablet">Tablet</option>
           </select>
+
+          <label>Bid Price ($):</label>
+          <input type="text" name="customBid" value={customBid} onChange={this.handleChange} />
 
           <button onClick={this.handleAdRequest}>Send Ad Request</button>
         </div>
