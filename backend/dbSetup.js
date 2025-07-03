@@ -32,7 +32,6 @@ async function initializeDatabase() {
     );
   `);
 
-  // Seed if empty
   const { count } = await db.get(`SELECT COUNT(*) as count FROM dsps`);
   if (count === 0) {
     await db.run(`

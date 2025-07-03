@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './App.css';
 
 class App extends Component {
   state = {
@@ -20,11 +21,11 @@ class App extends Component {
       geo,
       device,
       time: new Date().toISOString(),
-      custom_bid: parseFloat(customBid) || 0  // Send custom bid
+      custom_bid: parseFloat(customBid) || 0,
     };
 
     try {
-      const response = await fetch("http://localhost:3001/ad-request", {
+      const response = await fetch('http://localhost:3001/ad-request', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(requestData),
@@ -58,10 +59,10 @@ class App extends Component {
     const { geo, device, customBid, adRequests } = this.state;
 
     return (
-      <div style={{ padding: '20px' }}>
-        <h2>SSP Ad Auction Simulator</h2>
+      <div className="app-container">
+        <h2>🧠 SSP Ad Auction Simulator</h2>
 
-        <div style={{ marginBottom: '20px', display: 'flex', gap: '10px', alignItems: 'center' }}>
+        <div className="form-container">
           <label>Geo:</label>
           <select name="geo" value={geo} onChange={this.handleChange}>
             <option value="US">US</option>
@@ -77,12 +78,12 @@ class App extends Component {
           </select>
 
           <label>Bid Price ($):</label>
-          <input type="text" name="customBid" value={customBid} onChange={this.handleChange} />
+          <input type="text" name="customBid" value={customBid} onChange={this.handleChange} placeholder="Optional" />
 
           <button onClick={this.handleAdRequest}>Send Ad Request</button>
         </div>
 
-        <table border="1" cellPadding="8" style={{ width: '100%', textAlign: 'left' }}>
+        <table className="result-table">
           <thead>
             <tr>
               <th>#</th>
@@ -90,9 +91,9 @@ class App extends Component {
               <th>Device</th>
               <th>Time</th>
               <th>Winner DSP</th>
-              <th>Bid Price ($)</th>
-              <th>Creative Image</th>
-              <th>Click URL</th>
+              <th>Bid ($)</th>
+              <th>Creative</th>
+              <th>Link</th>
             </tr>
           </thead>
           <tbody>
@@ -105,15 +106,18 @@ class App extends Component {
                 <td>{req.winner_dsp}</td>
                 <td>{req.bid_price}</td>
                 <td>
-                  <img src={req.image_url} alt="ad" style={{ width: '100px' }} />
+                  <img src={req.image_url} alt="ad" />
                 </td>
                 <td>
-                  <a href={req.click_url} target="_blank" rel="noopener noreferrer">
-                    Visit
-                  </a>
+                  <a href={req.click_url} target="_blank" rel="noopener noreferrer">Visit</a>
                 </td>
               </tr>
             ))}
+            {adRequests.length === 0 && (
+              <tr>
+                <td colSpan="8" className="empty-row">No requests made yet.</td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

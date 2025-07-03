@@ -36,3 +36,89 @@
     transform: rotate(360deg);
   }
 }
+
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f5f7fa;
+}
+
+.app-container {
+  padding: 30px;
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+}
+
+.form-container {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+input[type="text"],
+select {
+  padding: 5px;
+}
+
+button {
+  padding: 8px 14px;
+  background-color: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1259a3;
+}
+
+.result-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.result-table thead {
+  background-color: #1976d2;
+  color: #fff;
+}
+
+.result-table th,
+.result-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+}
+
+.result-table img {
+  width: 90px;
+  border-radius: 4px;
+}
+
+.result-table a {
+  color: #1976d2;
+  text-decoration: none;
+}
+
+.result-table a:hover {
+  text-decoration: underline;
+}
+
+.empty-row {
+  padding: 20px;
+  color: #777;
+  text-align: center;
+}
